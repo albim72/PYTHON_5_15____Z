@@ -1,6 +1,7 @@
 from oldresistor import OldResistor
 from resistor import Resistor
 from votage import VoltageResistance
+from bounded import BoundedResistance
 
 print("Różne konstrukcje klas i ich metod....")
 r0 = OldResistor(10.2E2)
@@ -23,3 +24,15 @@ print(f"natężenie początkowe prądu: {r2.current} A")
 r2.voltage = 48
 print(f"natężenie prądu: {r2.current} A")
 print(f"napięcie prądu: {r2.voltage} V")
+
+r3 = BoundedResistance(1E2)
+print(f"_____________ {r3.__class__.__name__} ____________")
+try:
+      r3.ohms = -10
+      print(f'oporność: {r3.ohms}om')
+except ValueError as ve:
+      print(ve)
+except Exception as exc:
+      print(exc)
+
+print("ciąg dalszy programu....")
