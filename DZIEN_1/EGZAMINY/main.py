@@ -1,6 +1,7 @@
 from homework import Homework
 from exam import Exam
 from grade import ExamG
+from weakgrade import ExamW
 
 print("_________ HOMEWORK _________")
 us = Homework()
@@ -26,6 +27,27 @@ print(f'Egzamin: pisanie --> {fexam.writing_grade}, matematyka: {fexam.math_grad
       f'nauki przyrodniczne: {fexam.science_grade}')
 
 sexam = ExamG()
+sexam.math_grade = 67
+sexam.writing_grade = 72
+sexam.science_grade = 89
+print("drugi termin")
+print(f'Egzamin: pisanie --> {sexam.writing_grade}, matematyka: {sexam.math_grade}, '
+      f'nauki przyrodniczne: {sexam.science_grade}')
+
+print("przypomnienie: pierwszy termin")
+print(f'Egzamin: pisanie --> {fexam.writing_grade}, matematyka: {fexam.math_grade}, '
+      f'nauki przyrodniczne: {fexam.science_grade}')
+
+print("_________ WEAKGRADE -> EXAMW _________")
+fexam = ExamW()
+fexam.math_grade = 50
+fexam.writing_grade = 67
+fexam.science_grade = 80
+print("pierwszy termin")
+print(f'Egzamin: pisanie --> {fexam.writing_grade}, matematyka: {fexam.math_grade}, '
+      f'nauki przyrodniczne: {fexam.science_grade}')
+
+sexam = ExamW()
 sexam.math_grade = 67
 sexam.writing_grade = 72
 sexam.science_grade = 89
