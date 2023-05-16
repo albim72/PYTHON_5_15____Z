@@ -17,7 +17,7 @@ def brak(self):
 class SednoOdpowiedzi(type):
     def __init__(cls,clasname,bases,attrib):
         if required:
-            if clasname == "Kopernik":
+            if attrib.get('ne'):
                 cls.odpowiedz = odpowiedz_new
             else:
                 cls.odpowiedz = odpowiedz
@@ -34,10 +34,10 @@ class SwTomasz(metaclass=SednoOdpowiedzi):
     pass
 
 class Kopernik(metaclass=SednoOdpowiedzi):
-    pass
+    ne=True
 
 class Einstein(metaclass=SednoOdpowiedzi):
-    pass
+    ne=True
 
 
 fil1 = Arystoteles()
