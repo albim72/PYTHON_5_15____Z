@@ -53,7 +53,7 @@ class Ork:
         return 'złym orkiem'
 
     def action(self):
-        return 'masakruje go i wysyła do zaświatów'
+        return 'masakruje go, a następnie wysyła do zaświatów'
 
 
 class WarlockWorld:
@@ -69,20 +69,33 @@ class WarlockWorld:
 
     def make_obstacle(self):
         return Ork()
-    
+
 class GameEnvironment:
     def __init__(self,factory):
         self.hero = factory.make_character()
         self.obstacle = factory.make_obstacle()
-        
+
     def play(self):
         self.hero.interact_with(self.obstacle)
-        
+
 def validate_age(name):
     try:
-        age = input(f'Witaj {name}. Ile masz lat? ') 
+        age = input(f'Witaj {name}. Ile masz lat? ')
         age = int(age)
     except ValueError as err:
         print(f'Wiek {age} jes błędny, spróbuj ponownie...')
         return (False,age)
     return (True,age)
+
+def main():
+    name = input("Witaj, podaj swoje imię...")
+    valid_input = False
+    while not valid_input:
+        valid_input, age = validate_age(name)
+
+    game = FrogWorld if age<14 else WarlockWorld
+    environment = GameEnvironment(game(name))
+    environment.play() 
+
+if __name__ == '__main__':
+    main()
