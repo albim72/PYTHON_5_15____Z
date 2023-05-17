@@ -15,7 +15,7 @@ def synchroniczna():
     endtime = time.time()
     print(f"całkowity czas wykoania obliczenia w procesie synchronicznym wynosi: {endtime-starttime:.2f} s")
 
-def asynchroniczna():
+def asynchroniczna_proc():
     starttime = time.time()
     with concurrent.futures.ProcessPoolExecutor(max_workers=6) as executor:
         wynik = executor.map(run_heavy_function,numbers)
@@ -23,9 +23,19 @@ def asynchroniczna():
     endtime = time.time()
     print(f"całkowity czas wykoania obliczenia w procesie asynchronicznym wynosi: {endtime - starttime:.2f} s")
 
+def asynchroniczna_thread():
+    starttime = time.time()
+    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as executor:
+        wynik = executor.map(run_heavy_function,numbers)
+    print(list(wynik))
+    endtime = time.time()
+    print(f"całkowity czas wykoania obliczenia w procesie asynchronicznym wynosi: {endtime - starttime:.2f} s")
+
+
 def main():
     synchroniczna()
-    asynchroniczna()
+    asynchroniczna_proc()
+    asynchroniczna_thread()
 
 if __name__ == '__main__':
     main()
