@@ -29,7 +29,7 @@ class FrogWorld:
 
     def make_character(self):
         return Frog(self.player_name)
-    
+
     def make_obstacle(self):
         return Bug()
 
@@ -69,3 +69,20 @@ class WarlockWorld:
 
     def make_obstacle(self):
         return Ork()
+    
+class GameEnvironment:
+    def __init__(self,factory):
+        self.hero = factory.make_character()
+        self.obstacle = factory.make_obstacle()
+        
+    def play(self):
+        self.hero.interact_with(self.obstacle)
+        
+def validate_age(name):
+    try:
+        age = input(f'Witaj {name}. Ile masz lat? ') 
+        age = int(age)
+    except ValueError as err:
+        print(f'Wiek {age} jes błędny, spróbuj ponownie...')
+        return (False,age)
+    return (True,age)
