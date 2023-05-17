@@ -68,7 +68,7 @@ class CreamyBaconBuilder:
 
     def add_sauce(self):
         print('adding the cream fraiche souce to your creamy bacon...')
-        self.pizza.sauce = PizzaSauce.creme_fraiche
+        self.pizza.sauce = PizzaSauce.cream_fraiche
         time.sleep(STEP_DELAY)
         print('done with the cream fraiche sauce')
 
@@ -121,3 +121,18 @@ def validate_style(builders):
         print(error_msg)
         return (False,None)
     return (True,builder)
+
+def main():
+    builders = dict(m=MargaritaBuilder,c=CreamyBaconBuilder)
+    valid_input = False
+    while not valid_input:
+        valid_input, builder = validate_style(builders)
+    print()
+    waiter = Waiter()
+    waiter.construct_pizza(builder)
+    pizza = waiter.pizza
+    print()
+    print(f'Enjoy your {pizza}!')
+
+if __name__ == '__main__':
+    main()
